@@ -53,8 +53,12 @@ support_db - имя базы данных
 
 На этом, настройка конфига завершена. Можете просто сохранить и закрыть этот файл.
 """
+import os
 
-MySQL = ['localhost', 'user', 'password', 'support_db'] 
-TOKEN = ''
-ADMIN_ID = ''
+from dotenv import load_dotenv()
+load_dotenv()
+
+MySQL = ['localhost', os.getenv('DB_USER'), os.getenv('DB_PASSWORD'), 'support_db']
+TOKEN = os.getenv('TOKEN')
+ADMIN_ID = os.getenv('ADMIN_ID')
 PROXY_URL = ''
