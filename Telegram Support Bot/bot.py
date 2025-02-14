@@ -14,7 +14,7 @@ bot = telebot.TeleBot(config.TOKEN, skip_pending=True)
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.send_message(message.chat.id, '👋🏻 Привет! Это бот для технической поддержки пользователей.\nЕсли у тебя есть какой-либо вопрос или проблема - нажми на кнопку <b>Написать запрос</b> и наши сотрудники в скором времени тебе ответят!', parse_mode='html', reply_markup=markup.markup_main())
+    bot.send_message(message.chat.id, '👋🏻 Привет! Это бот для технической поддержки участников OlympX 2025.\nЕсли у тебя есть какой-либо вопрос или проблема - нажми на кнопку <b>Написать запрос</b> и наши сотрудники в скором времени тебе ответят!', parse_mode='html', reply_markup=markup.markup_main())
 
 
 @bot.message_handler(commands=['agent'])
@@ -46,7 +46,8 @@ def send_text(message):
     user_id = message.from_user.id
 
     if message.text == '✏️ Написать запрос':
-        take_new_request = bot.send_message(message.chat.id, 'Введите свой запрос и наши сотрудники скоро с вами свяжутся.', reply_markup=markup.markup_cancel())
+        take_new_request = bot.send_message(message.chat.id, 'Введите свой запрос и мы постараемся ответить как можно быстрее. '
+                                                             'Убедительная просьба - указывать свое ФИО', reply_markup=markup.markup_cancel())
 
         bot.clear_step_handler_by_chat_id(message.chat.id)
         bot.register_next_step_handler(take_new_request, get_new_request)
@@ -87,7 +88,7 @@ def get_password_message(message):
         bot.send_message(message.chat.id, 'Выберите раздел технической панели:', parse_mode='html', reply_markup=markup.markup_agent())
 
     else:
-        send_message = bot.send_message(message.chat.id, '⚠️ Неверный пароль. Попробуй ещё раз.', reply_markup=markup.markup_cancel())
+        send_message = bot.send_message(message.chat.id, '⚠️ Неверный пароль. Попробуйте ещё раз.', reply_markup=markup.markup_cancel())
 
         bot.clear_step_handler_by_chat_id(message.chat.id)
         bot.register_next_step_handler(send_message, get_password_message)
