@@ -55,7 +55,7 @@ support_db - имя базы данных
 """
 import os
 
-from dotenv import load_dotenv()
+from dotenv import load_dotenv
 load_dotenv()
 
 MySQL = ['localhost', os.getenv('DB_USER'), os.getenv('DB_PASSWORD'), 'support_db']
