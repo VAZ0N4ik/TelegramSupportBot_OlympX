@@ -196,7 +196,7 @@ def get_additional_message(message, req_id, status):
                 if additional_message == 'None':
                     additional_message = ''
 
-                bot.send_message(user_id, f'⚠️ Получен новый ответ на ваш запрос ID {req_id}!\n\n🧑‍💻 Ответ агента поддержки:\n{additional_message}\n\nЧтобы продолжить диалог по текущему запросу или завершить его - перейдите в пункт меню "Мои запросы" и выберите запрос с ID: {req_id}', reply_markup=markup.markup_main())
+                bot.send_message(user_id, f'⚠️ Получен новый ответ на ваш запрос ID {req_id}!\n\n🧑‍💻 Ответ агента поддержки:\n{additional_message}\n\nЧтобы *__продолжить диалог__* по текущему запросу или *__завершить его__*, выберите :\nМои запросы —> ❗️| ID: {req_id}', reply_markup=markup.markup_main(), parse_mode="MarkdownV2")
 
                 if type == 'photo':
                     bot.send_photo(user_id, photo=file_id, reply_markup=markup.markup_main())
